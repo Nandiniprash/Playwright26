@@ -1,0 +1,1 @@
+{"attachments":[],"errors":[{"message":"login failed: Error: page.goto: url: expected string, got undefined","trace":"Error: page.goto: url: expected string, got undefined\n    at LoginPage.login (D:\\JavaScript\\Project\\Pages\\LoginPage.ts:53:25)\n    at D:\\JavaScript\\Project\\Hooks\\hooks.ts:7:14","status":"broken","timestamp":1794402855418}]}

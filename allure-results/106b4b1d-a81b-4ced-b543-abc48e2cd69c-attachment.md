@@ -1,0 +1,86 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Campaigns\campaigns.spec.ts >> campaigns
+- Location: tests\Campaigns\campaigns.spec.ts:313:1
+
+# Error details
+
+```
+Error: page.goto: url: expected string, got undefined
+```
+
+```
+Error: locator.hover: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('//img[@src="themes/softed/images/user.PNG"]')
+
+```
+
+# Test source
+
+```ts
+  1  | import { type Page, type Locator } from "@playwright/test";
+  2  | 
+  3  | 
+  4  | export class HomePage{
+  5  |     org: Locator
+  6  |     contact: Locator
+  7  |     leads: Locator
+  8  |     product: Locator
+  9  |     more: Locator
+  10 |     campaign: Locator
+  11 |     profile: Locator
+  12 |     signOut: Locator
+  13 |     page: Page
+  14 | 
+  15 |     constructor(page:Page){
+  16 |        this.page=page
+  17 |        this.org= page.getByText("Organizations").first()
+  18 |        this.contact= page.getByText("Contacts")
+  19 |        this.leads= page.getByText("Leads")
+  20 |        this.product= page.getByText("Products")
+  21 |        this.more= page.getByText("More")
+  22 |        this.campaign= page.getByRole('link', { name: 'Campaigns' })
+  23 |        this.profile= page.locator('//img[@src="themes/softed/images/user.PNG"]')
+  24 |        this.signOut= page.getByText("Sign Out")
+  25 | 
+  26 |     }
+  27 | 
+  28 |     async clickOrganization(){
+  29 |         await this.org.click()
+  30 |     }
+  31 | 
+  32 |     async clickContact(){
+  33 |         await this.contact.click()
+  34 |     }
+  35 | 
+  36 |     async clickLeads(){
+  37 |         await this.leads.click()
+  38 |     }
+  39 | 
+  40 |     async clickProduct(){
+  41 |         await this.product.click()
+  42 |     }
+  43 | 
+  44 |     async hoverMore(){
+  45 |         await this.more.hover()
+  46 |     }
+  47 | 
+  48 |     async clickCampaign(){
+  49 |         await this.campaign.click()
+  50 |     }
+  51 | 
+  52 |     async clickLogout(){
+> 53 |        await this.profile.hover()
+     |                           ^ Error: locator.hover: Target page, context or browser has been closed
+  54 |        await this.signOut.click()
+  55 |     }
+  56 | 
+  57 | }
+```
